@@ -7,6 +7,8 @@
     <persistence-unit name="default">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/MeuControleDS</jta-data-source>
+        <class>com.meucontrole.api.entities.Administrator</class>
+        <class>com.meucontrole.api.entities.User</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
