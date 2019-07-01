@@ -6,14 +6,17 @@
 
     <persistence-unit name="default">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/MeuControleDS</jta-data-source>
+        <jta-data-source>java:/MeuControleXADS</jta-data-source>
         <class>com.meucontrole.api.entities.Administrator</class>
+        <class>com.meucontrole.api.entities.RepeatTransaction</class>
+        <class>com.meucontrole.api.entities.Transaction</class>
+        <class>com.meucontrole.api.entities.Transactional</class>
         <class>com.meucontrole.api.entities.User</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 </persistence>
