@@ -3,10 +3,7 @@ package com.meucontrole.api.entities;
 import com.meucontrole.api.enums.TransactionType;
 import com.meucontrole.api.exceptions.BadRequestException;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -14,16 +11,23 @@ import static com.meucontrole.api.util.Message.*;
 import static java.time.ZoneOffset.UTC;
 
 @Entity
+@Table(name = "tbl_transaction")
 public class Transaction extends AbstractEntity {
 
+    @Column(name = "cln_payment_date")
     private LocalDate paymentDate;
+
+    @Column(name = "cln_expiration_date")
     private LocalDate expirationDate;
 
-    @Column(nullable = false)
+    @Column(name = "cln_description", nullable = false)
     private String description;
 
-    @Column(precision = 2, nullable = false)
+    @Column(name = "cln_value", precision = 15, scale = 2, nullable = false)
     private BigDecimal value;
+
+    @ManyToOne
+    private Category category;
 
     @Column(nullable = false)
     private TransactionType type;

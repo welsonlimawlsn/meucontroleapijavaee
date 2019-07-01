@@ -8,10 +8,15 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/MeuControleXADS</jta-data-source>
         <class>com.meucontrole.api.entities.Administrator</class>
+        <class>com.meucontrole.api.entities.Category</class>
+        <class>com.meucontrole.api.entities.CreditCard</class>
+        <class>com.meucontrole.api.entities.FinancialInstitution</class>
+        <class>com.meucontrole.api.entities.Invoice</class>
         <class>com.meucontrole.api.entities.RepeatTransaction</class>
         <class>com.meucontrole.api.entities.Transaction</class>
         <class>com.meucontrole.api.entities.Transactional</class>
         <class>com.meucontrole.api.entities.User</class>
+        <class>com.meucontrole.api.entities.Wallet</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.show_sql" value="true"/>

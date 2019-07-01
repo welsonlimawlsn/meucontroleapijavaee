@@ -1,5 +1,6 @@
 package com.meucontrole.api.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class AbstractEntity implements Serializable {
 
     @Id
+    @Column(name = "cln_id")
     private String id;
 
     public String getId() {

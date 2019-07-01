@@ -10,19 +10,19 @@ import static com.meucontrole.api.util.Message.CONTA_JA_ATIVADA;
 @MappedSuperclass
 public class ApplicationUser extends AbstractEntity {
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "cln_first_name", nullable = false, length = 20)
     private String firstName;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "cln_last_name", nullable = false, length = 20)
     private String lastName;
 
-    @Column(nullable = false, length = 100, unique = true)
+    @Column(name = "cln_email", nullable = false, length = 100, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "cln_password", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "cln_enabled", nullable = false)
     private Boolean enabled = false;
 
 

@@ -11,19 +11,23 @@ import java.util.List;
 import static com.meucontrole.api.util.Message.QUANTIDADE_MINIMA_TRANSACAO_COM_REPETICAO;
 
 @Entity
+@Table(name = "tbl_repeat_transaction")
 public class RepeatTransaction extends AbstractEntity {
 
-    @Column(nullable = false)
+    @Column(name = "cln_number_repetitions", nullable = false)
     private Integer numberRepetitions;
 
-    @Column(nullable = false, precision = 2)
+    @Column(name = "cln_value", nullable = false, precision = 15, scale = 2)
     private BigDecimal value;
 
-    @Column(nullable = false)
+    @Column(name = "cln_description", nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "cln_initial_expiration_date", nullable = false)
     private LocalDate initialExpirationDate;
+
+    @ManyToOne
+    private Category category;
 
     @Column(nullable = false)
     private TransactionType type;
