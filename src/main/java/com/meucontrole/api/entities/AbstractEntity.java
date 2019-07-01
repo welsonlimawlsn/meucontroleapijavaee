@@ -1,25 +1,22 @@
 package com.meucontrole.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
 @MappedSuperclass
 public class AbstractEntity implements Serializable {
 
     @Id
     @Column(name = "cln_id")
     private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {

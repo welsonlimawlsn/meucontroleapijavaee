@@ -1,7 +1,11 @@
 package com.meucontrole.api.dto;
 
 import com.meucontrole.api.entities.User;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class NewUserDTO {
 
     private String firstName;
@@ -16,21 +20,5 @@ public class NewUserDTO {
         user.setEmail(email);
         user.setPassword(password);
         return user;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

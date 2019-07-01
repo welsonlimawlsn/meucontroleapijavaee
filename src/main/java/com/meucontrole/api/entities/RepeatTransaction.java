@@ -2,6 +2,8 @@ package com.meucontrole.api.entities;
 
 import com.meucontrole.api.enums.TransactionType;
 import com.meucontrole.api.exceptions.BadRequestException;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +12,8 @@ import java.util.List;
 
 import static com.meucontrole.api.util.Message.QUANTIDADE_MINIMA_TRANSACAO_COM_REPETICAO;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_repeat_transaction")
 public class RepeatTransaction extends AbstractEntity {

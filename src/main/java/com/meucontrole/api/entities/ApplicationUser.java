@@ -1,12 +1,16 @@
 package com.meucontrole.api.entities;
 
 import com.meucontrole.api.exceptions.BadRequestException;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import static com.meucontrole.api.util.Message.CONTA_JA_ATIVADA;
 
+@Getter
+@Setter
 @MappedSuperclass
 public class ApplicationUser extends AbstractEntity {
 
@@ -31,45 +35,5 @@ public class ApplicationUser extends AbstractEntity {
             throw new BadRequestException(CONTA_JA_ATIVADA);
         }
         enabled = true;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 }

@@ -2,6 +2,8 @@ package com.meucontrole.api.entities;
 
 import com.meucontrole.api.enums.TransactionType;
 import com.meucontrole.api.exceptions.BadRequestException;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 import static com.meucontrole.api.util.Message.*;
 import static java.time.ZoneOffset.UTC;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_transaction")
 public class Transaction extends AbstractEntity {

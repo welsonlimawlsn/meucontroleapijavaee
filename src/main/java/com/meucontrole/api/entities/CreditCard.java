@@ -1,10 +1,15 @@
 package com.meucontrole.api.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_credit_card")
 public class CreditCard extends AbstractEntity {
