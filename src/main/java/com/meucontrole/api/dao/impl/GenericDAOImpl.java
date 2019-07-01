@@ -6,16 +6,17 @@ import com.meucontrole.api.util.IdGenerator;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 public class GenericDAOImpl<E extends AbstractEntity> implements GenericDAO<E> {
 
+    @PersistenceContext
     private EntityManager em;
     private Class<E> aClass;
 
-    public GenericDAOImpl(EntityManager em, Class<E> aClass) {
-        this.em = em;
+    public GenericDAOImpl(Class<E> aClass) {
         this.aClass = aClass;
     }
 
