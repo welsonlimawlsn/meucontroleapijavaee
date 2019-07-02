@@ -14,7 +14,11 @@ public enum Message {
     SENHA_DO_USUARIO_NAO_DEVE_ESTAR_EM_BRANCO("Senha do usuário não deve estar em branco."),
     SENHA_DO_USUARIO_DEVE_TER_NO_MINIMO_8_CARACTERES("Senha do usuário deve ter no minimo 8 caracteres."),
     EMAIL_DO_USUARIO_INVALIDO("E-mail do usuário é invalido."),
-    ;
+    EMAIL_DUPLICADO("E-mail duplicado."),
+    LINK_INVALIDO("Link invalido."),
+    USUARIO_NAO_EXISTE("Usuário não existe."),
+    LINK_DE_ATIVACAO_EXPIRADO("Link de ativação expirado, em breve chegará outro em seu e-mail."),
+    LINK_DE_ATIVACAO_JA_USADO("Link de ativação já usado.");
 
     private String message;
 
