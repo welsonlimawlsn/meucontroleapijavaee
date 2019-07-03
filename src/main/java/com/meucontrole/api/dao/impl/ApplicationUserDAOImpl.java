@@ -24,7 +24,11 @@ public class ApplicationUserDAOImpl extends GenericDAOImpl<ApplicationUser> impl
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
-        return Optional.of(query.getSingleResult());
+        try {
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ public class AccountActivationEndpoint {
 
     @Path("{id}")
     @GET
-    public Response activateAccount(@PathParam("id") String id) throws BadRequestException, NotFoundException, MessagingException {
+    public Response activateAccount(@PathParam("id") String id) throws MessagingException, BadRequestException, NotFoundException {
         accountActivationService.activateAccount(id);
         return Response.ok().build();
     }

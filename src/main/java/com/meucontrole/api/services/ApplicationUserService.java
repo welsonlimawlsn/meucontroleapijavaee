@@ -4,6 +4,9 @@ import com.meucontrole.api.dao.ApplicationUserDAO;
 import com.meucontrole.api.entities.ApplicationUser;
 import com.meucontrole.api.exceptions.BadRequestException;
 import com.meucontrole.api.exceptions.NotFoundException;
+import com.meucontrole.api.exceptions.UnauthorizedException;
+import com.meucontrole.api.session.ApplicationUserSession;
+import com.meucontrole.api.util.ApplicationDate;
 import com.meucontrole.api.util.Message;
 import com.meucontrole.api.validators.ApplicationUserValidator;
 
@@ -26,7 +29,13 @@ public class ApplicationUserService {
     @EJB
     private AccountActivationService accountActivationService;
 
-    public ApplicationUser newUser(ApplicationUser applicationUser) throws BadRequestException, MessagingException {
+    @EJB
+    private TokenService tokenService;
+
+    @Inject
+    private ApplicationUserSession applicationUserSession;
+
+    public ApplicationUser newUser(ApplicationUser applicationUser) throws MessagingException, BadRequestException {
         ApplicationUserValidator.validate(applicationUser);
         throwIfEmailAlreadyExists(applicationUser);
         applicationUser.setEnabled(false);
@@ -52,5 +61,23 @@ public class ApplicationUserService {
         dao.findById(applicationUser.getId()).orElseThrow(() -> new NotFoundException(Message.USUARIO_NAO_EXISTE));
         dao.update(applicationUser);
         return applicationUser;
+    }
+
+    public String login(String email, String password) throws MessagingException, UnauthorizedException {
+        ApplicationUser applicationUser = dao.findByEmailAndPassword(email, password)
+                .orElseThrow(() -> new UnauthorizedException(Message.EMAIL_OU_SENHA_INVALIDOS));
+        if (applicationUser.getAccountCreationDate().isBefore(ApplicationDate.localDateNow().minusDays(7)) && !applicationUser.getEnabled()) {
+            accountActivationService.sendLinkForActivationOfAccount(applicationUser);
+            throw new UnauthorizedException(Message.ATIVACAO_DA_CONTA_NECESSARIA);
+        }
+        return tokenService.generateToken(applicationUser);
+    }
+
+    public ApplicationUser findByEmail(String email) throws NotFoundException {
+        return dao.findByEmail(email).orElseThrow(() -> new NotFoundException(Message.USUARIO_NAO_EXISTE));
+    }
+
+    public ApplicationUser getAuthorized() {
+        return applicationUserSession.getAuthorized();
     }
 }

@@ -1,4 +1,4 @@
-package com.meucontrole.api.dto;
+package com.meucontrole.api.dto.user;
 
 import com.meucontrole.api.entities.User;
 import lombok.Getter;

@@ -18,7 +18,11 @@ public enum Message {
     LINK_INVALIDO("Link invalido."),
     USUARIO_NAO_EXISTE("Usuário não existe."),
     LINK_DE_ATIVACAO_EXPIRADO("Link de ativação expirado, em breve chegará outro em seu e-mail."),
-    LINK_DE_ATIVACAO_JA_USADO("Link de ativação já usado.");
+    LINK_DE_ATIVACAO_JA_USADO("Link de ativação já usado."),
+    EMAIL_OU_SENHA_INVALIDOS("E-mail e/ou senha invalidos."),
+    TOKEN_EXPIRADO("Seu login expirou, faça o login novamente!"),
+    ATIVACAO_DA_CONTA_NECESSARIA("Ativação da conta é necessaria, reeviamos o email de ativação."),
+    VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO("Você não tem permissão para acessar isto!");
 
     private String message;
 

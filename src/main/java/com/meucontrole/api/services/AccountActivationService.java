@@ -35,7 +35,7 @@ public class AccountActivationService {
         );
     }
 
-    public void activateAccount(String accountActivationId) throws NotFoundException, BadRequestException, MessagingException {
+    public void activateAccount(String accountActivationId) throws MessagingException, BadRequestException, NotFoundException {
         AccountActivation accountActivation = dao.findById(accountActivationId).orElseThrow(() -> new NotFoundException(Message.LINK_INVALIDO));
         accountActivation.use();
         dao.update(accountActivation);
