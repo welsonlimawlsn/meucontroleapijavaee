@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
@@ -52,7 +53,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
     }
 
     private String getSubject(ContainerRequestContext requestContext) throws ForbiddenException, UnauthorizedException {
-        String authorization = requestContext.getHeaderString("Authorization");
+        String authorization = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authorization == null || !authorization.startsWith("Bearer ")) {
             throw new ForbiddenException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
         }

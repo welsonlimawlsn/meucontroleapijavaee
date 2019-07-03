@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class AuthorizationControlFilter implements ContainerResponseFilter {
         String path = requestContext.getUriInfo().getPath();
         if ((path.startsWith("/user") || path.startsWith("/admin")) && applicationUserSession.getAuthorized() != null) {
             String token = tokenService.generateToken(applicationUserSession.getAuthorized());
-            responseContext.getHeaders().add("Authorization", token);
+            responseContext.getHeaders().add(HttpHeaders.AUTHORIZATION, token);
         }
     }
 }

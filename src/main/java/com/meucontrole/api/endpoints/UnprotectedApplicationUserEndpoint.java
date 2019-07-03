@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.mail.MessagingException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.security.NoSuchAlgorithmException;
@@ -24,7 +25,7 @@ public class UnprotectedApplicationUserEndpoint {
     @Path("login")
     public Response login(LoginDTO loginDTO) throws MessagingException, UnauthorizedException, NoSuchAlgorithmException {
         String token = applicationUserService.login(loginDTO.getEmail(), loginDTO.getPassword());
-        return Response.ok().header("Authorization", token).build();
+        return Response.ok().header(HttpHeaders.AUTHORIZATION, token).build();
     }
 
     @POST
