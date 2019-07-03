@@ -2,6 +2,7 @@ package com.meucontrole.api.services;
 
 import com.meucontrole.api.dao.ApplicationUserDAO;
 import com.meucontrole.api.entities.ApplicationUser;
+import com.meucontrole.api.entities.User;
 import com.meucontrole.api.exceptions.BadRequestException;
 import com.meucontrole.api.exceptions.NotFoundException;
 import com.meucontrole.api.exceptions.UnauthorizedException;
@@ -34,6 +35,9 @@ public class ApplicationUserService {
     @EJB
     private TokenService tokenService;
 
+    @EJB
+    private WalletService walletService;
+
     @Inject
     private ApplicationUserSession applicationUserSession;
 
@@ -44,6 +48,7 @@ public class ApplicationUserService {
         applicationUser.setPassword(Encryption.encrypt(applicationUser.getEmail() + "_" + applicationUser.getPassword()));
         dao.insert(applicationUser);
         accountActivationService.sendLinkForActivationOfAccount(applicationUser);
+        walletService.newWallet((User) applicationUser);
         return applicationUser;
     }
 
