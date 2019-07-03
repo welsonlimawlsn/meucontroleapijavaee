@@ -7,6 +7,7 @@ import com.meucontrole.api.exceptions.NotFoundException;
 import com.meucontrole.api.exceptions.UnauthorizedException;
 import com.meucontrole.api.session.ApplicationUserSession;
 import com.meucontrole.api.util.ApplicationDate;
+import com.meucontrole.api.util.Encryption;
 import com.meucontrole.api.util.Message;
 import com.meucontrole.api.validators.ApplicationUserValidator;
 
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
+import java.security.NoSuchAlgorithmException;
 
 @Stateless
 public class ApplicationUserService {
@@ -35,10 +37,11 @@ public class ApplicationUserService {
     @Inject
     private ApplicationUserSession applicationUserSession;
 
-    public ApplicationUser newUser(ApplicationUser applicationUser) throws MessagingException, BadRequestException {
+    public ApplicationUser newUser(ApplicationUser applicationUser) throws MessagingException, BadRequestException, NoSuchAlgorithmException {
         ApplicationUserValidator.validate(applicationUser);
         throwIfEmailAlreadyExists(applicationUser);
         applicationUser.setEnabled(false);
+        applicationUser.setPassword(Encryption.encrypt(applicationUser.getEmail() + "_" + applicationUser.getPassword()));
         dao.insert(applicationUser);
         accountActivationService.sendLinkForActivationOfAccount(applicationUser);
         return applicationUser;
@@ -63,8 +66,8 @@ public class ApplicationUserService {
         return applicationUser;
     }
 
-    public String login(String email, String password) throws MessagingException, UnauthorizedException {
-        ApplicationUser applicationUser = dao.findByEmailAndPassword(email, password)
+    public String login(String email, String password) throws MessagingException, UnauthorizedException, NoSuchAlgorithmException {
+        ApplicationUser applicationUser = dao.findByEmailAndPassword(email, Encryption.encrypt(email + "_" + password))
                 .orElseThrow(() -> new UnauthorizedException(Message.EMAIL_OU_SENHA_INVALIDOS));
         if (applicationUser.getAccountCreationDate().isBefore(ApplicationDate.localDateNow().minusDays(7)) && !applicationUser.getEnabled()) {
             accountActivationService.sendLinkForActivationOfAccount(applicationUser);

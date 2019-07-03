@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import java.security.NoSuchAlgorithmException;
 
 @Path("/")
 public class UnprotectedApplicationUserEndpoint {
@@ -21,15 +22,15 @@ public class UnprotectedApplicationUserEndpoint {
 
     @POST
     @Path("login")
-    public Response login(LoginDTO loginDTO) throws MessagingException, UnauthorizedException {
+    public Response login(LoginDTO loginDTO) throws MessagingException, UnauthorizedException, NoSuchAlgorithmException {
         String token = applicationUserService.login(loginDTO.getEmail(), loginDTO.getPassword());
         return Response.ok().header("Authorization", token).build();
     }
 
     @POST
     @Path("new-user")
-    public Response newUser(NewUserDTO newUserDTO) throws MessagingException, BadRequestException {
+    public Response newUser(NewUserDTO newUserDTO) throws MessagingException, BadRequestException, NoSuchAlgorithmException {
         ApplicationUser applicationUser = applicationUserService.newUser(newUserDTO.convertToObject());
-        return Response.created(UriBuilder.fromPath("/user/{id}").build(applicationUser.getId())).build();
+        return Response.created(UriBuilder.fromPath("/user").build(applicationUser.getId())).build();
     }
 }
