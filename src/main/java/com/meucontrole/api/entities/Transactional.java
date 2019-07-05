@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.FetchType.EAGER;
 
 @Getter
 @Setter
@@ -15,6 +16,6 @@ import static javax.persistence.CascadeType.REMOVE;
 @Table(name = "tbl_transactional")
 public class Transactional extends AbstractEntity {
 
-    @OneToMany(mappedBy = "origin", cascade = REMOVE)
+    @OneToMany(mappedBy = "origin", cascade = REMOVE, fetch = EAGER)
     private List<Transaction> transactions;
 }

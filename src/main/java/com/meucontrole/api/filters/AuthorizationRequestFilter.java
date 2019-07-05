@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 @Provider
-public class AuthorizationFilter implements ContainerRequestFilter {
+public class AuthorizationRequestFilter implements ContainerRequestFilter {
 
     @EJB
     private TokenService tokenService;

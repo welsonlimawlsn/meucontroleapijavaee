@@ -22,7 +22,8 @@ public enum Message {
     EMAIL_OU_SENHA_INVALIDOS("E-mail e/ou senha invalidos."),
     TOKEN_EXPIRADO("Seu login expirou, faça o login novamente!"),
     ATIVACAO_DA_CONTA_NECESSARIA("Ativação da conta é necessaria, reeviamos o email de ativação."),
-    VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO("Você não tem permissão para acessar isto!");
+    VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO("Você não tem permissão para acessar isto!"),
+    CARTEIRA_NAO_ENCOTRADA("Carteira não encontrada.");
 
     private String message;
 

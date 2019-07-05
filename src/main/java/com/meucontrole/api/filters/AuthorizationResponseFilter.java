@@ -13,7 +13,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 @Provider
-public class AuthorizationControlFilter implements ContainerResponseFilter {
+public class AuthorizationResponseFilter implements ContainerResponseFilter {
 
     @Inject
     private ApplicationUserSession applicationUserSession;
