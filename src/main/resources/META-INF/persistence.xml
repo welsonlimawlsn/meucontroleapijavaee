@@ -8,8 +8,10 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/MeuControleXADS</jta-data-source>
         <class>com.meucontrole.api.entities.AccountActivation</class>
+        <class>com.meucontrole.api.entities.AccountBlock</class>
         <class>com.meucontrole.api.entities.Administrator</class>
         <class>com.meucontrole.api.entities.ApplicationUser</class>
+        <class>com.meucontrole.api.entities.AttemptSignIn</class>
         <class>com.meucontrole.api.entities.Category</class>
         <class>com.meucontrole.api.entities.CreditCard</class>
         <class>com.meucontrole.api.entities.FinancialInstitution</class>

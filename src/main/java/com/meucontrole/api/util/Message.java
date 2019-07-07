@@ -23,7 +23,8 @@ public enum Message {
     TOKEN_EXPIRADO("Seu login expirou, faça o login novamente!"),
     ATIVACAO_DA_CONTA_NECESSARIA("Ativação da conta é necessaria, reeviamos o email de ativação."),
     VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO("Você não tem permissão para acessar isto!"),
-    CARTEIRA_NAO_ENCOTRADA("Carteira não encontrada.");
+    CARTEIRA_NAO_ENCOTRADA("Carteira não encontrada."),
+    CONTA_BLOQUEADA("Conta bloqueada, aguarde 30 minutos e tente novamente.");
 
     private String message;
 

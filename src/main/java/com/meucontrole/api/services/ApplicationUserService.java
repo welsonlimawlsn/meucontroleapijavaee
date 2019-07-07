@@ -16,8 +16,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.SecurityContext;
 import java.security.NoSuchAlgorithmException;
 
 @Stateless
@@ -25,9 +23,6 @@ public class ApplicationUserService {
 
     @Inject
     private ApplicationUserDAO dao;
-
-    @Context
-    private SecurityContext securityContext;
 
     @EJB
     private AccountActivationService accountActivationService;
@@ -37,6 +32,12 @@ public class ApplicationUserService {
 
     @EJB
     private WalletService walletService;
+
+    @EJB
+    private AttemptSignInService attemptSignInService;
+
+    @EJB
+    private AccountBlockService accountBlockService;
 
     @Inject
     private ApplicationUserSession applicationUserSession;
@@ -58,10 +59,6 @@ public class ApplicationUserService {
         }
     }
 
-    public ApplicationUser getUserById(String id) throws NotFoundException {
-        return dao.findById(id).orElseThrow(() -> new NotFoundException(Message.CONTA_JA_ATIVADA));
-    }
-
     public ApplicationUser update(ApplicationUser applicationUser) throws NotFoundException {
         if (applicationUser == null || applicationUser.getId() == null || applicationUser.getId().isEmpty()) {
             throw new NotFoundException(Message.USUARIO_NAO_EXISTE);
@@ -72,9 +69,16 @@ public class ApplicationUserService {
     }
 
     public String login(String email, String password) throws MessagingException, UnauthorizedException, NoSuchAlgorithmException {
+        if (accountBlockService.isBlocked(email)) {
+            throw new UnauthorizedException(Message.CONTA_BLOQUEADA);
+        }
+        attemptSignInService.registerAttempt(email);
+        attemptSignInService.verifyNumberOfAttemptsAndBlockIfNecessary(email);
         ApplicationUser applicationUser = dao.findByEmailAndPassword(email, Encryption.encrypt(email + "_" + password))
                 .orElseThrow(() -> new UnauthorizedException(Message.EMAIL_OU_SENHA_INVALIDOS));
-        if (applicationUser.getAccountCreationDate().isBefore(ApplicationDate.localDateNow().minusDays(7)) && !applicationUser.getEnabled()) {
+        boolean isNotPossibleAccessAccountWithoutActivating = applicationUser.getAccountCreationDate()
+                .isBefore(ApplicationDate.localDateNow().minusDays(7)) && !applicationUser.getEnabled();
+        if (isNotPossibleAccessAccountWithoutActivating) {
             accountActivationService.sendLinkForActivationOfAccount(applicationUser);
             throw new UnauthorizedException(Message.ATIVACAO_DA_CONTA_NECESSARIA);
         }
