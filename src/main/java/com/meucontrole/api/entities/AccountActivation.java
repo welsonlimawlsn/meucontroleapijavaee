@@ -23,7 +23,6 @@ public class AccountActivation extends AbstractEntity {
 
     @Column(name = "cln_expiration_time", nullable = false)
     private LocalDateTime expirationTime = ApplicationDate.localDateTimeNow().plusHours(1);
-    ;
 
     @Column(name = "cln_used", nullable = false)
     private Boolean used = false;
@@ -45,4 +44,5 @@ public class AccountActivation extends AbstractEntity {
     public boolean isValid() {
         return expirationTime.isAfter(ApplicationDate.localDateTimeNow());
     }
+
 }

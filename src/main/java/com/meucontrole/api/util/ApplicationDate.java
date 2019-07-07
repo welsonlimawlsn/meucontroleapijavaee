@@ -16,4 +16,5 @@ public class ApplicationDate {
     public static LocalDateTime localDateTimeNow() {
         return LocalDateTime.now(ZoneOffset.UTC);
     }
+
 }

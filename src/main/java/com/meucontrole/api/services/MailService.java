@@ -26,4 +26,5 @@ public class MailService {
         Transport.send(message);
         System.out.println("Email enviado para " + to);
     }
+
 }

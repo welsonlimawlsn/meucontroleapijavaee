@@ -11,10 +11,6 @@ public enum TransactionType {
         this.value = value;
     }
 
-    public Integer getValue() {
-        return value;
-    }
-
     public static TransactionType get(Integer value) {
         TransactionType transactionType = null;
         TransactionType[] types = TransactionType.values();
@@ -27,5 +23,9 @@ public enum TransactionType {
             throw new IllegalArgumentException("Unknown " + value);
         }
         return transactionType;
+    }
+
+    public Integer getValue() {
+        return value;
     }
 }

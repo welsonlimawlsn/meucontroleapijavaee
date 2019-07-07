@@ -13,4 +13,5 @@ public class AttemptSignIn extends AbstractEntity {
 
     private String email;
     private LocalDateTime dateTime;
+
 }

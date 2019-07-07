@@ -92,4 +92,5 @@ public class ApplicationUserService {
     public ApplicationUser getAuthorized() {
         return applicationUserSession.getAuthorized();
     }
+
 }

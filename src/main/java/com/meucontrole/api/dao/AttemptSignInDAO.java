@@ -7,4 +7,5 @@ import java.time.LocalDateTime;
 public interface AttemptSignInDAO extends GenericDAO<AttemptSignIn> {
 
     long getNumberOfAttemptByEmailAndSinceDateTime(String email, LocalDateTime dateTime);
+
 }

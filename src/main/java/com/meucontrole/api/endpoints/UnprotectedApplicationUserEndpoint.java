@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 
 @Path("/")
 public class UnprotectedApplicationUserEndpoint {
+
     @EJB
     private ApplicationUserService applicationUserService;
 
@@ -34,4 +35,5 @@ public class UnprotectedApplicationUserEndpoint {
         ApplicationUser applicationUser = applicationUserService.newUser(newUserDTO.convertToObject());
         return Response.created(UriBuilder.fromPath("/user").build(applicationUser.getId())).build();
     }
+
 }

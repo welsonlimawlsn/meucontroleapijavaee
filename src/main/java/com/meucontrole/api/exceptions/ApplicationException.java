@@ -21,4 +21,5 @@ public class ApplicationException extends Exception {
     public Response.Status getStatus() {
         return status;
     }
+
 }

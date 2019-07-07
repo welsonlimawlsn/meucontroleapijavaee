@@ -23,4 +23,5 @@ public class AccountBlockService {
     public boolean isBlocked(String email) {
         return dao.findByEmailAndSinceDateTime(email, ApplicationDate.localDateTimeNow()).isPresent();
     }
+
 }

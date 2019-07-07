@@ -43,4 +43,5 @@ public class TokenService {
             throw new UnauthorizedException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO, e);
         }
     }
+
 }

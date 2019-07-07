@@ -16,4 +16,5 @@ public interface GenericDAO<E extends AbstractEntity> {
     void remove(E entity);
 
     List<E> listAll();
+
 }

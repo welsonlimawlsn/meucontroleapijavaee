@@ -18,4 +18,5 @@ public class WalletEndpoint {
     public Response getWallet() throws NotFoundException {
         return Response.ok(walletService.getWalletUserAuthorized()).build();
     }
+
 }

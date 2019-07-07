@@ -37,4 +37,5 @@ public class ApplicationUserValidator {
             throw new BadRequestException(Message.SENHA_DO_USUARIO_DEVE_TER_NO_MINIMO_8_CARACTERES);
         }
     }
+
 }

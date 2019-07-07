@@ -31,4 +31,5 @@ public class AccountBlockDAOImpl extends GenericDAOImpl<AccountBlock> implements
             return Optional.empty();
         }
     }
+
 }

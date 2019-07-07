@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 public class AccountBlock extends AbstractEntity {
+
     private String email;
     private LocalDateTime expiration;
+
 }

@@ -22,4 +22,5 @@ public class Category extends AbstractEntity {
 
     @ManyToOne(optional = false)
     private User user;
+
 }

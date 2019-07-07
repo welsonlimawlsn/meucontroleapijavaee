@@ -23,4 +23,5 @@ public class AccountActivationEndpoint {
         accountActivationService.activateAccount(id);
         return Response.ok().build();
     }
+
 }

@@ -29,4 +29,5 @@ public class Invoice extends Transactional {
 
     @ManyToOne(optional = false)
     private CreditCard creditCard;
+
 }

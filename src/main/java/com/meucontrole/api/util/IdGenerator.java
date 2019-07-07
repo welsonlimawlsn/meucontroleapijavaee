@@ -4,10 +4,9 @@ import java.util.Random;
 
 public class IdGenerator {
 
+    private static IdGenerator idGenerator;
     private char[] characters;
     private Random random;
-
-    private static IdGenerator idGenerator;
 
     public IdGenerator() {
         characters = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -29,4 +28,5 @@ public class IdGenerator {
         }
         return new String(id);
     }
+
 }

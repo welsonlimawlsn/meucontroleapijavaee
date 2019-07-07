@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO {
+
     private String id;
     private String firstName;
     private String lastName;
@@ -20,4 +21,5 @@ public class UserDTO {
         userDTO.email = user.getEmail();
         return userDTO;
     }
+
 }

@@ -21,4 +21,5 @@ public class NewUserDTO {
         user.setPassword(password);
         return user;
     }
+
 }

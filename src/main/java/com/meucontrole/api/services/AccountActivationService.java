@@ -47,4 +47,5 @@ public class AccountActivationService {
         applicationUser.enable();
         applicationUserService.update(applicationUser);
     }
+
 }

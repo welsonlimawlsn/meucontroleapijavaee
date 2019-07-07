@@ -52,4 +52,5 @@ public class GenericDAOImpl<E extends AbstractEntity> implements GenericDAO<E> {
     public List<E> listAll() {
         return em.createQuery("SELECT e FROM " + aClass.getSimpleName() + " e", aClass).getResultList();
     }
+
 }

@@ -59,4 +59,5 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
         }
         return tokenService.getSubject(authorization);
     }
+
 }

@@ -10,6 +10,7 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 public class ApplicationExceptionHandler implements ExceptionMapper<ApplicationException> {
+
     @Override
     public Response toResponse(ApplicationException exception) {
         String cause = exception.getCause() != null ? exception.getCause().getMessage() : "Nenhuma menssagem definida.";
@@ -20,4 +21,5 @@ public class ApplicationExceptionHandler implements ExceptionMapper<ApplicationE
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }
+
 }

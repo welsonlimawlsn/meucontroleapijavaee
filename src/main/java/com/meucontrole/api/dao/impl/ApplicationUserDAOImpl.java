@@ -42,4 +42,5 @@ public class ApplicationUserDAOImpl extends GenericDAOImpl<ApplicationUser> impl
             return Optional.empty();
         }
     }
+
 }

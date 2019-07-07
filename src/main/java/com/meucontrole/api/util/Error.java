@@ -1,6 +1,7 @@
 package com.meucontrole.api.util;
 
 public class Error {
+
     private String devMessage;
     private String message;
     private int status;
@@ -34,4 +35,5 @@ public class Error {
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

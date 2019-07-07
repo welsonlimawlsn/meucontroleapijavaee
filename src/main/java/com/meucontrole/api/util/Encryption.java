@@ -14,4 +14,5 @@ public class Encryption {
         }
         return hex.toString();
     }
+
 }

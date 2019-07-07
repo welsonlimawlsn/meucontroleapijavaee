@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface AccountBlockDAO extends GenericDAO<AccountBlock> {
 
     Optional<AccountBlock> findByEmailAndSinceDateTime(String email, LocalDateTime dateTime);
+
 }

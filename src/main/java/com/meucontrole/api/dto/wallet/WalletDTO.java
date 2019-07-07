@@ -11,4 +11,5 @@ import java.util.List;
 public class WalletDTO {
 
     private List<Transaction> transactions;
+
 }

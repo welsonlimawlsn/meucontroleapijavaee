@@ -24,4 +24,5 @@ public class ApplicationUserEndpoint {
     public Response getUser() {
         return Response.ok(UserDTO.getDTOObject((User) applicationUserService.getAuthorized())).build();
     }
+
 }

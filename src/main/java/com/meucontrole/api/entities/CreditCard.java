@@ -31,4 +31,5 @@ public class CreditCard extends AbstractEntity {
 
     @ManyToOne(optional = false)
     private User user;
+
 }

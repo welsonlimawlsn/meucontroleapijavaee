@@ -43,4 +43,5 @@ public abstract class ApplicationUser extends AbstractEntity {
         }
         enabled = true;
     }
+
 }

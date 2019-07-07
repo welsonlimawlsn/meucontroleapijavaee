@@ -45,4 +45,5 @@ public class RepeatTransaction extends AbstractEntity {
             throw new BadRequestException(QUANTIDADE_MINIMA_TRANSACAO_COM_REPETICAO);
         }
     }
+
 }

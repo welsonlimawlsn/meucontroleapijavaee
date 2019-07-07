@@ -18,4 +18,5 @@ public class Transactional extends AbstractEntity {
 
     @OneToMany(mappedBy = "origin", cascade = REMOVE, fetch = EAGER)
     private List<Transaction> transactions;
+
 }

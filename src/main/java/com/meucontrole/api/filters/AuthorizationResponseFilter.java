@@ -29,4 +29,5 @@ public class AuthorizationResponseFilter implements ContainerResponseFilter {
             responseContext.getHeaders().add(HttpHeaders.AUTHORIZATION, token);
         }
     }
+
 }

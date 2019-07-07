@@ -19,4 +19,5 @@ public class FinancialInstitution extends Transactional {
 
     @ManyToOne(optional = false)
     private User user;
+
 }

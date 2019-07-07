@@ -12,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_wallet")
 public class Wallet extends Transactional {
+
     @OneToOne
     private User user;
+
 }

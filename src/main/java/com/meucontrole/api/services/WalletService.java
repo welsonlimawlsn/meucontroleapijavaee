@@ -29,4 +29,5 @@ public class WalletService {
         return dao.findByUser((User) applicationUserSession.getAuthorized())
                 .orElseThrow(() -> new NotFoundException(Message.CARTEIRA_NAO_ENCOTRADA));
     }
+
 }

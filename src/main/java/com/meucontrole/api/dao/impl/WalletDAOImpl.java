@@ -29,4 +29,5 @@ public class WalletDAOImpl extends GenericDAOImpl<Wallet> implements WalletDAO {
             return Optional.empty();
         }
     }
+
 }

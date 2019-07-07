@@ -25,4 +25,5 @@ public class AttemptSignInDAOImpl extends GenericDAOImpl<AttemptSignIn> implemen
         query.setParameter("dateTime", dateTime);
         return query.getSingleResult();
     }
+
 }

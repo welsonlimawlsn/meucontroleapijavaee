@@ -16,4 +16,5 @@ public class ApplicationUserSession {
     public void authorize(ApplicationUser applicationUser) {
         this.applicationUser = applicationUser;
     }
+
 }

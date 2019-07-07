@@ -7,6 +7,7 @@ import javax.persistence.Converter;
 
 @Converter(autoApply = true)
 public class TransactionTypeConverter implements AttributeConverter<TransactionType, Integer> {
+
     @Override
     public Integer convertToDatabaseColumn(TransactionType attribute) {
         return attribute.getValue();
@@ -16,4 +17,5 @@ public class TransactionTypeConverter implements AttributeConverter<TransactionT
     public TransactionType convertToEntityAttribute(Integer dbData) {
         return TransactionType.get(dbData);
     }
+
 }
