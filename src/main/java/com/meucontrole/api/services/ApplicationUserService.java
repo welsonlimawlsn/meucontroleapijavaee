@@ -93,4 +93,9 @@ public class ApplicationUserService {
         return applicationUserSession.getAuthorized();
     }
 
+    public void changePassword(ApplicationUser applicationUser, String newPassword) throws NoSuchAlgorithmException, NotFoundException {
+        applicationUser.setPassword(Encryption.encrypt(applicationUser.getEmail() + "_" + newPassword));
+        update(applicationUser);
+    }
+
 }

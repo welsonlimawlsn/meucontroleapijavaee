@@ -16,6 +16,7 @@
         <class>com.meucontrole.api.entities.CreditCard</class>
         <class>com.meucontrole.api.entities.FinancialInstitution</class>
         <class>com.meucontrole.api.entities.Invoice</class>
+        <class>com.meucontrole.api.entities.PasswordRecovery</class>
         <class>com.meucontrole.api.entities.RepeatTransaction</class>
         <class>com.meucontrole.api.entities.Transaction</class>
         <class>com.meucontrole.api.entities.Transactional</class>
