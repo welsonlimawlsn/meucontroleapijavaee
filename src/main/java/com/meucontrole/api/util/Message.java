@@ -25,7 +25,8 @@ public enum Message {
     VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO("Você não tem permissão para acessar isto!"),
     CARTEIRA_NAO_ENCOTRADA("Carteira não encontrada."),
     CONTA_BLOQUEADA("Conta bloqueada, aguarde 30 minutos e tente novamente."),
-    LINK_DE_RECUPERACAO_USADO("Link de recuperção já foi usado");
+    LINK_DE_RECUPERACAO_USADO("Link de recuperção já foi usado"),
+    LINK_DE_RECUPERACAO_EXPIRADO("Link de recuperação expirado, peça novamente.");
 
     private String message;
 

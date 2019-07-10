@@ -41,7 +41,7 @@ public class PasswordRecoveryService {
 
     public void changePassword(String idPasswordRecovery, String newPassword) throws NotFoundException, BadRequestException, NoSuchAlgorithmException {
         PasswordRecovery passwordRecovery = dao.findByIdAndValidExpiration(idPasswordRecovery)
-                .orElseThrow(() -> new NotFoundException(Message.LINK_INVALIDO));
+                .orElseThrow(() -> new NotFoundException(Message.LINK_DE_RECUPERACAO_EXPIRADO));
         passwordRecovery.use();
         dao.update(passwordRecovery);
         applicationUserService.changePassword(passwordRecovery.getApplicationUser(), newPassword);

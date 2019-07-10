@@ -15,7 +15,7 @@ import java.util.Objects;
 public class AbstractEntity implements Serializable {
 
     @Id
-    @Column(name = "cln_id")
+    @Column(name = "cln_id", length = 15)
     private String id;
 
     @Override
