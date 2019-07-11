@@ -1,7 +1,7 @@
 package com.meucontrole.api.filters;
 
 import com.meucontrole.api.services.TokenService;
-import com.meucontrole.api.session.ApplicationUserSession;
+import com.meucontrole.api.session.Sessao;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AuthorizationResponseFilter implements ContainerResponseFilter {
 
     @Inject
-    private ApplicationUserSession applicationUserSession;
+    private Sessao sessao;
 
     @EJB
     private TokenService tokenService;
@@ -24,8 +24,8 @@ public class AuthorizationResponseFilter implements ContainerResponseFilter {
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
         String path = requestContext.getUriInfo().getPath();
-        if ((path.startsWith("/user") || path.startsWith("/admin")) && applicationUserSession.getAuthorized() != null) {
-            String token = tokenService.generateToken(applicationUserSession.getAuthorized());
+        if ((path.startsWith("/usuario") || path.startsWith("/admin")) && sessao.getAutorizado() != null) {
+            String token = tokenService.gerar(sessao.getAutorizado());
             responseContext.getHeaders().add(HttpHeaders.AUTHORIZATION, token);
         }
     }

@@ -1,6 +1,6 @@
 package com.meucontrole.api.exceptions;
 
-import com.meucontrole.api.util.Message;
+import com.meucontrole.api.util.Mensagem;
 
 import javax.ws.rs.core.Response;
 
@@ -8,13 +8,13 @@ public class ApplicationException extends Exception {
 
     private Response.Status status;
 
-    public ApplicationException(Message message, Response.Status status) {
-        super(message.toString());
+    public ApplicationException(Mensagem mensagem, Response.Status status) {
+        super(mensagem.toString());
         this.status = status;
     }
 
-    public ApplicationException(Message message, Response.Status status, Throwable throwable) {
-        super(message.toString(), throwable);
+    public ApplicationException(Mensagem mensagem, Response.Status status, Throwable throwable) {
+        super(mensagem.toString(), throwable);
         this.status = status;
     }
 

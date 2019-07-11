@@ -1,17 +1,17 @@
 package com.meucontrole.api.exceptions;
 
-import com.meucontrole.api.util.Message;
+import com.meucontrole.api.util.Mensagem;
 
 import javax.ws.rs.core.Response;
 
 public class BadRequestException extends ApplicationException {
 
-    public BadRequestException(Message message) {
-        super(message, Response.Status.BAD_REQUEST);
+    public BadRequestException(Mensagem mensagem) {
+        super(mensagem, Response.Status.BAD_REQUEST);
     }
 
-    public BadRequestException(Message message, Throwable throwable) {
-        super(message, Response.Status.BAD_REQUEST, throwable);
+    public BadRequestException(Mensagem mensagem, Throwable throwable) {
+        super(mensagem, Response.Status.BAD_REQUEST, throwable);
     }
 
 }

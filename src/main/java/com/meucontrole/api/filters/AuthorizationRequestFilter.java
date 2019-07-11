@@ -4,10 +4,10 @@ import com.meucontrole.api.exceptions.ForbiddenException;
 import com.meucontrole.api.exceptions.NotFoundException;
 import com.meucontrole.api.exceptions.UnauthorizedException;
 import com.meucontrole.api.exceptions.errorhandler.ApplicationExceptionHandler;
-import com.meucontrole.api.services.ApplicationUserService;
+import com.meucontrole.api.services.UsuarioDaAplicacaoService;
 import com.meucontrole.api.services.TokenService;
-import com.meucontrole.api.session.ApplicationUserSession;
-import com.meucontrole.api.util.Message;
+import com.meucontrole.api.session.Sessao;
+import com.meucontrole.api.util.Mensagem;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -24,14 +24,14 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
     private TokenService tokenService;
 
     @Inject
-    private ApplicationUserSession applicationUserSession;
+    private Sessao sessao;
 
     @EJB
-    private ApplicationUserService applicationUserService;
+    private UsuarioDaAplicacaoService usuarioDaAplicacaoService;
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-        if (requestContext.getUriInfo().getPath().startsWith("/user")) {
+        if (requestContext.getUriInfo().getPath().startsWith("/usuario")) {
             try {
                 String subject = getSubject(requestContext);
                 authorizeSubject(subject);
@@ -43,19 +43,19 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
 
     private void authorizeSubject(String subject) throws ForbiddenException {
         if (subject == null) {
-            throw new ForbiddenException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
+            throw new ForbiddenException(Mensagem.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
         }
         try {
-            applicationUserSession.authorize(applicationUserService.findByEmail(subject));
+            sessao.autorizar(usuarioDaAplicacaoService.procurarPeloEmail(subject));
         } catch (NotFoundException e) {
-            throw new ForbiddenException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
+            throw new ForbiddenException(Mensagem.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
         }
     }
 
     private String getSubject(ContainerRequestContext requestContext) throws ForbiddenException, UnauthorizedException {
         String authorization = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authorization == null || !authorization.startsWith("Bearer ")) {
-            throw new ForbiddenException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
+            throw new ForbiddenException(Mensagem.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO);
         }
         return tokenService.getSubject(authorization);
     }

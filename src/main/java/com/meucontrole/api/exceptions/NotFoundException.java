@@ -1,13 +1,13 @@
 package com.meucontrole.api.exceptions;
 
-import com.meucontrole.api.util.Message;
+import com.meucontrole.api.util.Mensagem;
 
 import javax.ws.rs.core.Response;
 
 public class NotFoundException extends ApplicationException {
 
-    public NotFoundException(Message message) {
-        super(message, Response.Status.NOT_FOUND);
+    public NotFoundException(Mensagem mensagem) {
+        super(mensagem, Response.Status.NOT_FOUND);
     }
 
 }

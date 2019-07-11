@@ -1,8 +1,8 @@
 package com.meucontrole.api.services;
 
-import com.meucontrole.api.entities.ApplicationUser;
+import com.meucontrole.api.entidades.UsuarioDaAplicacao;
 import com.meucontrole.api.exceptions.UnauthorizedException;
-import com.meucontrole.api.util.Message;
+import com.meucontrole.api.util.Mensagem;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -19,13 +19,13 @@ import java.util.Date;
 @Singleton
 public class TokenService {
 
-    private SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    private SecretKey chaveSecreta = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-    public String generateToken(ApplicationUser applicationUser) {
+    public String gerar(UsuarioDaAplicacao usuarioDaAplicacao) {
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneOffset.UTC).plusMinutes(15);
         return "Bearer " + Jwts.builder()
-                .setSubject(applicationUser.getEmail())
-                .signWith(secretKey)
+                .setSubject(usuarioDaAplicacao.getEmail())
+                .signWith(chaveSecreta)
                 .setExpiration(Date.from(zonedDateTime.toInstant()))
                 .compact();
     }
@@ -33,14 +33,14 @@ public class TokenService {
     public String getSubject(String token) throws UnauthorizedException {
         try {
             Claims body = Jwts.parser()
-                    .setSigningKey(secretKey)
+                    .setSigningKey(chaveSecreta)
                     .parseClaimsJws(token.replace("Bearer ", ""))
                     .getBody();
             return body.getSubject();
         } catch (ExpiredJwtException e) {
-            throw new UnauthorizedException(Message.TOKEN_EXPIRADO);
+            throw new UnauthorizedException(Mensagem.TOKEN_EXPIRADO);
         } catch (SignatureException e) {
-            throw new UnauthorizedException(Message.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO, e);
+            throw new UnauthorizedException(Mensagem.VOCE_NAO_TEM_PERMISSAO_PARA_ACESSAR_ISTO, e);
         }
     }
 

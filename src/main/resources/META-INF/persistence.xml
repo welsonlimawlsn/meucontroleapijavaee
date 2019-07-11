@@ -7,26 +7,26 @@
     <persistence-unit name="default">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/MeuControleXADS</jta-data-source>
-        <class>com.meucontrole.api.entities.AccountActivation</class>
-        <class>com.meucontrole.api.entities.AccountBlock</class>
-        <class>com.meucontrole.api.entities.Administrator</class>
-        <class>com.meucontrole.api.entities.ApplicationUser</class>
-        <class>com.meucontrole.api.entities.AttemptSignIn</class>
-        <class>com.meucontrole.api.entities.Category</class>
-        <class>com.meucontrole.api.entities.CreditCard</class>
-        <class>com.meucontrole.api.entities.FinancialInstitution</class>
-        <class>com.meucontrole.api.entities.Invoice</class>
-        <class>com.meucontrole.api.entities.PasswordRecovery</class>
-        <class>com.meucontrole.api.entities.RepeatTransaction</class>
-        <class>com.meucontrole.api.entities.Transaction</class>
-        <class>com.meucontrole.api.entities.Transactional</class>
-        <class>com.meucontrole.api.entities.User</class>
-        <class>com.meucontrole.api.entities.Wallet</class>
+        <class>com.meucontrole.api.entidades.AtivacaoDeConta</class>
+        <class>com.meucontrole.api.entidades.BloqueioDeConta</class>
+        <class>com.meucontrole.api.entidades.Administrador</class>
+        <class>com.meucontrole.api.entidades.UsuarioDaAplicacao</class>
+        <class>com.meucontrole.api.entidades.TentativaEntrada</class>
+        <class>com.meucontrole.api.entidades.Categoria</class>
+        <class>com.meucontrole.api.entidades.CartaoDeCredito</class>
+        <class>com.meucontrole.api.entidades.InstituicaoFinanceira</class>
+        <class>com.meucontrole.api.entidades.Fatura</class>
+        <class>com.meucontrole.api.entidades.RecuperacaoDeSenha</class>
+        <class>com.meucontrole.api.entidades.TransacaoComRepeticao</class>
+        <class>com.meucontrole.api.entidades.Transacao</class>
+        <class>com.meucontrole.api.entidades.Transacionavel</class>
+        <class>com.meucontrole.api.entidades.Usuario</class>
+        <class>com.meucontrole.api.entidades.Carteira</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 </persistence>
